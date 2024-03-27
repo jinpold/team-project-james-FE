@@ -25,12 +25,13 @@ export default function Home() {  // Home() = 컴포넌트 = 펑션
   .then(res=>{
     alert("response가 가져온 이름 : " + JSON.stringify(res.data))
   })}
-  return(<>
+  return(<div className="text-3xl font-bold underline">
   <div>Welcome to React !!</div>
   <h3>이름을 입력하세요</h3>
   <input type="text" onChange={handleChange}/><br />
   <button onClick={handleClick}>입력</button><br />
   <Link href={"/login"} >로그인</Link><br />
-  <Link href={"/join"} >회원가입</Link>
-  </>); // return ( ) = 컨텐트
+  <Link href={"/join"} >회원가입</Link><br />
+  <Link href={"/mui-demo"} >MUI 데모</Link>
+  </div>); // return ( ) = 컨텐트
 }

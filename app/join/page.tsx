@@ -20,7 +20,7 @@ export default function join() {
   })
 
   const { username, password, checkPassword, name, phone, job, height, weight } = inputs;
-  const handleChange = (e: any) => {
+  const handleChange = (e: any) => { //컨슈머 
     const { value, name } = e.target;
     setInputs(
       {
@@ -28,7 +28,7 @@ export default function join() {
         [name]: value
       })
   }
-
+   
   const router = useRouter();
 
   const handleSubmit = () => {

@@ -1,8 +1,7 @@
 'use client';
 import { useRouter } from "next/navigation"
-import { useState } from "react";
+import { useState } from "react"
 import axios from 'axios'
-
 const SERVER = 'http://localhost:8080'
 export default function login() {
 
@@ -32,7 +31,7 @@ export default function login() {
         const message = res.data.message   // JSON.stringify = toString() , res.data = responsebody
         alert((message))
         if (message === 'SUCCESS') {
-          router.push("/articles/new-article")
+          router.push("/articles/new-article") // 스택구조 push
         }
         else if (message === 'FAIL') {
           alert('FAIL');
@@ -45,8 +44,6 @@ export default function login() {
         }
       })
   }
-
-
 
   return (<>
     <h1>로그인</h1>
