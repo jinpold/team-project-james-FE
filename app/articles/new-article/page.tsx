@@ -34,7 +34,9 @@ export default function articles() { // 자바의 자료구조 ArrayList<>()
                console.log("게시글이 있습니다.")
                const array = res.data.result  // 자바에서 List로 보내면 arry 구조
                for (let element of array) { //element가 인덱스이고 그 안엔 value도 포함
-                console.log(element); }
+                console.log(element); 
+               }
+                setArticles(res.data.result)
                }else if (message === 'FAIL') {
                console.log('게시글이 없습니다.');
                }else {
@@ -57,7 +59,7 @@ export default function articles() { // 자바의 자료구조 ArrayList<>()
                 </tr>
             </thead>
             <tbody>
-                {articles.map((props: IArticle) =>  
+                {articles.map((props : IArticle) =>  
                (<tr key={props.id}>
                <td>{props.title}</td>
                <td>{props.content}</td>
