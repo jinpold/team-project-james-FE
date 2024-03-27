@@ -25,7 +25,7 @@ export default function Home() {  // Home() = 컴포넌트 = 펑션
   .then(res=>{
     alert("response가 가져온 이름 : " + JSON.stringify(res.data))
   })}
-  return(<div className="text-3xl font-bold underline">
+  return(<div className="text-center">
   <div>Welcome to React !!</div>
   <h3>이름을 입력하세요</h3>
   <input type="text" onChange={handleChange}/><br />
