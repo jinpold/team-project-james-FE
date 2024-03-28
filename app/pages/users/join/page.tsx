@@ -3,6 +3,9 @@ import { useRouter } from "next/navigation"
 import { useState } from "react";
 import axios from 'axios'
 import React from 'react';
+import { API } from '@/app/atoms/enums/API';
+import { PG } from "@/app/atoms/enums/PG";
+import AxiosConfig from '@/app/organisms/configs/axios-config';
 const SERVER = 'http://localhost:8080'
 
 
@@ -21,11 +24,11 @@ export default function join() {
 
   const { username, password, checkPassword, name, phone, job, height, weight } = inputs;
   const handleChange = (e: any) => { //컨슈머 
-    const { value, name } = e.target;
+    const { value, name : joinName } = e.target;
     setInputs(
       {
         ...inputs,
-        [name]: value
+        [joinName]: value
       })
   }
    
@@ -34,20 +37,14 @@ export default function join() {
   const handleSubmit = () => {
     alert("request가 가져가는 입력 값" + username + password + checkPassword +
       name + phone + job + height + weight)
-    const url = `${SERVER}/api/users`
+    const url = `${API.SERVER}/users`
     const data = { username, password, checkPassword, name, phone, job, height, weight } // data = requestbody
-    const config = {
-      headers: {
-        "Cache-Control": "no-cache",
-        "Content-Type": "application/json",
-        Authorization: `Bearer blah ~`,
-        "Access-Control-Allow-Origin": "*",
-      }
-    }
+    const config = AxiosConfig()
+      
     axios.post(url, data, config)
       .then(res => {
         alert("response가 가져온 ID : " + JSON.stringify(res.data)) // response.responsebody = res.data = hashmap
-        router.push("/login")
+        router.push(`${PG.USER}/login`)
       })
   }
 
