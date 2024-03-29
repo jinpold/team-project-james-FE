@@ -1,13 +1,12 @@
 'use client';
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useState } from "react";
 import axios from 'axios'
-import { API } from '@/app/atoms/enums/API';
-import { PG } from "@/app/atoms/enums/PG";
-import AxiosConfig from "@/app/organisms/configs/axios-config";
-const SERVER = 'http://localhost:8080'
+import { API } from "@/redux/common/enums/API";
+import AxiosConfig from "@/redux/common/configs/axios-config";
+import { PG } from "@/redux/common/enums/PG";
 
-export default function login() {
+const LoginPage = () => {
 
   const [username, setUsername] = useState('')
   const [password, SetPassword] = useState('')
@@ -19,12 +18,16 @@ export default function login() {
 
   const handleSubmit = () => {
     alert("request가 가져가는 입력 ID" + username)
-    axios.post(`${API.SERVER}/login`,{ username, password },AxiosConfig()) // = requestbody
+    const url = `${API.SERVER}/login`
+    const data = { username, password } // <- (원본 un : un, pw : pw ) Key & value가 같으면 생략가능 -> username : username ~
+    const config = AxiosConfig()
+
+    axios.post(url, data, config) // = requestbody
       .then(res => {                       // res.data.message = 자바의 "message", 
         const message = res.data.message   // JSON.stringify = toString() , res.data = responsebody
         alert((message))
         if (message === 'SUCCESS') {
-          router.push(`${PG.BOARD}/articles`) // 스택구조 push
+          router.push(`${PG.BOARD}/articles`)
         }
         else if (message === 'FAIL') {
           alert('FAIL');
@@ -38,6 +41,8 @@ export default function login() {
       })
   }
 
+
+
   return (<>
     <h1>로그인</h1>
     <h3>ID</h3>
@@ -47,3 +52,4 @@ export default function login() {
     <button onClick={handleSubmit}>전송</button>
   </>);
 }
+export default LoginPage;

@@ -1,17 +1,13 @@
 "use client"
-
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import MuiDemoRows from '@/app/organisms/rows/mui-demo-rows';
+import { DataGrid } from '@mui/x-data-grid';
 import MuiDemoColumns from '@/app/organisms/columns/mui-demo-columns';
+import MuiDemoRows from '@/app/organisms/rows/mui-demo-rows';
 
-// const columns: 
-
-// const rows = ts로 data 이동
 
 export default function DataGridDemo() {
-  return ( // 리액트의 객체
+  return (
     <Box sx={{ height: 400, width: '100%' }}>
       <DataGrid
         rows={MuiDemoRows()}
@@ -31,4 +27,3 @@ export default function DataGridDemo() {
   );
 }
 
-export function Test(){}

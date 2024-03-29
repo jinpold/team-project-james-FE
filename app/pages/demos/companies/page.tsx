@@ -1,13 +1,10 @@
 'use client';
-import CompanyColumns from "@/app/organisms/columns/company-columns";
-import CompanyRows from "@/app/organisms/rows/company-rows";
-import { table } from "console";
+import CompaniesColumns from "@/app/component/columns/companies-columns";
+import CompaniesRows from "@/app/component/rows/companies-rows";
 const SERVER = 'http://localhost:8080'
 
-
-export default function compannies() { 
-    
-    return ( 
+export default function articles() {
+    return (
         <table>
             <thead>
                 <tr>
@@ -15,9 +12,11 @@ export default function compannies() {
                     <th>Contact</th>
                     <th>Country</th>
                 </tr>
+
             </thead>
-             <tbody>
-                {CompanyRows().map((v, i) => (<CompanyColumns key={i} company={v.company} contact={v.contact} country={v.country} />))}
+            <tbody>
+                {CompaniesRows().map((v, i) =>
+                    (<CompaniesColumns key={i} company={v.company} contact={v.contact} country={v.country} />))}
             </tbody>
         </table>
     );

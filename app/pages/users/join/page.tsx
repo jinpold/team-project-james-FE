@@ -3,13 +3,12 @@ import { useRouter } from "next/navigation"
 import { useState } from "react";
 import axios from 'axios'
 import React from 'react';
-import { API } from '@/app/atoms/enums/API';
-import { PG } from "@/app/atoms/enums/PG";
-import AxiosConfig from '@/app/organisms/configs/axios-config';
-const SERVER = 'http://localhost:8080'
+import { API } from "@/redux/common/enums/API";
+import AxiosConfig from "@/redux/common/configs/axios-config";
+import { PG } from "@/redux/common/enums/PG";
+import { NextPage } from "next";
 
-
-export default function join() {
+const JoinPage: NextPage = () =>  {
 
   const [inputs, setInputs] = useState({
     username: "",
@@ -23,24 +22,21 @@ export default function join() {
   })
 
   const { username, password, checkPassword, name, phone, job, height, weight } = inputs;
-  const handleChange = (e: any) => { //컨슈머 
-    const { value, name : joinName } = e.target;
-    setInputs(
-      {
+  const handleChange = (e: any) => {
+    const { value, name } = e.target;
+    setInputs({
         ...inputs,
-        [joinName]: value
+        [name]: value
       })
   }
-   
+
   const router = useRouter();
 
-  const handleSubmit = () => {
-    alert("request가 가져가는 입력 값" + username + password + checkPassword +
-      name + phone + job + height + weight)
+  const handleSubmit = (e:any) => {
+    e.preventDefault()
     const url = `${API.SERVER}/users`
     const data = { username, password, checkPassword, name, phone, job, height, weight } // data = requestbody
     const config = AxiosConfig()
-      
     axios.post(url, data, config)
       .then(res => {
         alert("response가 가져온 ID : " + JSON.stringify(res.data)) // response.responsebody = res.data = hashmap
@@ -91,3 +87,7 @@ export default function join() {
     </div>
   </>);
 }
+
+
+
+export default JoinPage;
